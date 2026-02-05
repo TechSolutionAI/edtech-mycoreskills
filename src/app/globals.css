@@ -1,0 +1,708 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Launch area video: full frame on portrait (phone), fill screen on landscape */
+@media (orientation: portrait) {
+  video[data-launch-video] {
+    object-fit: contain;
+  }
+}
+
+/* Slow-moving blobs for auth pages (login/signup) */
+@keyframes auth-blob-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -30px) scale(1.05);
+  }
+  66% {
+    transform: translate(-20px, 25px) scale(0.98);
+  }
+}
+
+@keyframes auth-blob-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-35px, 40px) scale(1.02);
+  }
+  66% {
+    transform: translate(25px, -20px) scale(0.96);
+  }
+}
+
+@keyframes auth-blob-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-30px, -25px) scale(1.08);
+  }
+}
+
+@keyframes auth-blob-4 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(28px, 35px) scale(0.95);
+  }
+}
+
+.auth-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.auth-blob-1 {
+  width: min(420px, 55vw);
+  height: min(420px, 55vw);
+  left: -10%;
+  top: -5%;
+  background: rgba(90, 100, 130, 0.38);
+  animation: auth-blob-1 12s ease-in-out infinite;
+}
+
+.auth-blob-2 {
+  width: min(380px, 50vw);
+  height: min(380px, 50vw);
+  right: -8%;
+  bottom: -5%;
+  background: rgba(75, 85, 115, 0.35);
+  animation: auth-blob-2 14s ease-in-out infinite;
+}
+
+.auth-blob-3 {
+  width: min(320px, 42vw);
+  height: min(320px, 42vw);
+  right: 15%;
+  top: 20%;
+  background: rgba(80, 90, 120, 0.32);
+  animation: auth-blob-3 13s ease-in-out infinite;
+}
+
+.auth-blob-4 {
+  width: min(300px, 40vw);
+  height: min(300px, 40vw);
+  left: 10%;
+  bottom: 15%;
+  background: rgba(70, 80, 110, 0.34);
+  animation: auth-blob-4 15s ease-in-out infinite;
+}
+
+/* Hero title: My from left, Skills from right, Core from top, then together — repeats */
+@keyframes hero-from-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+  15% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  55% {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+}
+
+@keyframes hero-from-right {
+  0% {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+  15% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  55% {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+}
+
+@keyframes hero-from-top {
+  0% {
+    opacity: 0;
+    transform: translateY(-120%);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  55% {
+    opacity: 0;
+    transform: translateY(-120%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120%);
+  }
+}
+
+.hero-word-my {
+  animation: hero-from-left 4s ease-in-out infinite both;
+  animation-delay: 0s;
+}
+
+.hero-word-skills {
+  animation: hero-from-right 4s ease-in-out infinite both;
+  animation-delay: 0.4s;
+}
+
+.hero-word-core {
+  animation: hero-from-top 4s ease-in-out infinite both;
+  animation-delay: 0.8s;
+}
+
+/* Math launch area: M top-left, a bottom-left, t top-right, h bottom-right — repeating */
+@keyframes math-from-top-left {
+  0% {
+    opacity: 0;
+    transform: translate(-100%, -100%);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  55% {
+    opacity: 0;
+    transform: translate(-100%, -100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-100%, -100%);
+  }
+}
+
+@keyframes math-from-bottom-left {
+  0% {
+    opacity: 0;
+    transform: translate(-100%, 100%);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  55% {
+    opacity: 0;
+    transform: translate(-100%, 100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-100%, 100%);
+  }
+}
+
+@keyframes math-from-top-right {
+  0% {
+    opacity: 0;
+    transform: translate(100%, -100%);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  55% {
+    opacity: 0;
+    transform: translate(100%, -100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(100%, -100%);
+  }
+}
+
+@keyframes math-from-bottom-right {
+  0% {
+    opacity: 0;
+    transform: translate(100%, 100%);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  55% {
+    opacity: 0;
+    transform: translate(100%, 100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(100%, 100%);
+  }
+}
+
+.math-char-m {
+  animation: math-from-top-left 4s ease-in-out infinite both;
+  animation-delay: 0s;
+}
+
+.math-char-a {
+  animation: math-from-bottom-left 4s ease-in-out infinite both;
+  animation-delay: 0.3s;
+}
+
+.math-char-t {
+  animation: math-from-top-right 4s ease-in-out infinite both;
+  animation-delay: 0.6s;
+}
+
+.math-char-h {
+  animation: math-from-bottom-right 4s ease-in-out infinite both;
+  animation-delay: 0.9s;
+}
+
+/* ReadTheory: R,e,a,d shoot from left to center in order; Theory from top/mid/bottom right to center — repeating */
+@keyframes readtheory-shoot-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-150%);
+  }
+  12% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  42% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  52% {
+    opacity: 0;
+    transform: translateX(-150%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-150%);
+  }
+}
+
+@keyframes readtheory-from-top-right {
+  0% {
+    opacity: 0;
+    transform: translate(100%, -80%);
+  }
+  18% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  42% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  52% {
+    opacity: 0;
+    transform: translate(100%, -80%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(100%, -80%);
+  }
+}
+
+@keyframes readtheory-from-mid-right {
+  0% {
+    opacity: 0;
+    transform: translate(100%, 0);
+  }
+  18% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  42% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  52% {
+    opacity: 0;
+    transform: translate(100%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(100%, 0);
+  }
+}
+
+@keyframes readtheory-from-bottom-right {
+  0% {
+    opacity: 0;
+    transform: translate(100%, 80%);
+  }
+  18% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  42% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  52% {
+    opacity: 0;
+    transform: translate(100%, 80%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(100%, 80%);
+  }
+}
+
+.readtheory-char-r {
+  animation: readtheory-shoot-left 5s ease-out infinite both;
+  animation-delay: 0s;
+}
+
+.readtheory-char-e {
+  animation: readtheory-shoot-left 5s ease-out infinite both;
+  animation-delay: 0.12s;
+}
+
+.readtheory-char-a {
+  animation: readtheory-shoot-left 5s ease-out infinite both;
+  animation-delay: 0.24s;
+}
+
+.readtheory-char-d {
+  animation: readtheory-shoot-left 5s ease-out infinite both;
+  animation-delay: 0.36s;
+}
+
+.readtheory-th {
+  animation: readtheory-from-top-right 5s ease-out infinite both;
+  animation-delay: 0.5s;
+}
+
+.readtheory-eo {
+  animation: readtheory-from-mid-right 5s ease-out infinite both;
+  animation-delay: 0.5s;
+}
+
+.readtheory-ry {
+  animation: readtheory-from-bottom-right 5s ease-out infinite both;
+  animation-delay: 0.5s;
+}
+
+/* English Grammar: "English" rotates on Y-axis in center; "Grammar" orbits around it — repeating */
+@keyframes english-rotate-y {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes grammar-orbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Counter-rotate so "Grammar" stays horizontal while orbiting */
+@keyframes grammar-word-level {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+.english-grammar-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22rem;
+  min-height: 22rem;
+  perspective: 800px;
+}
+
+.english-rotate-y {
+  display: inline-block;
+  animation: english-rotate-y 5s linear infinite;
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+}
+
+.grammar-orbit-track {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18rem;
+  height: 18rem;
+  animation: grammar-orbit 10s linear infinite;
+  pointer-events: none;
+}
+
+.grammar-orbit-word {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  animation: grammar-word-level 10s linear infinite;
+  white-space: nowrap;
+}
+
+/* Typing: each letter bounces in order — repeating */
+@keyframes typing-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(0.35em);
+  }
+  45% {
+    transform: translateY(-0.12em);
+  }
+  60% {
+    transform: translateY(0);
+  }
+}
+
+.typing-char-t {
+  animation: typing-bounce 2.5s ease-in-out infinite both;
+  animation-delay: 0s;
+}
+
+.typing-char-y {
+  animation: typing-bounce 2.5s ease-in-out infinite both;
+  animation-delay: 0.12s;
+}
+
+.typing-char-p {
+  animation: typing-bounce 2.5s ease-in-out infinite both;
+  animation-delay: 0.24s;
+}
+
+.typing-char-i {
+  animation: typing-bounce 2.5s ease-in-out infinite both;
+  animation-delay: 0.36s;
+}
+
+.typing-char-n {
+  animation: typing-bounce 2.5s ease-in-out infinite both;
+  animation-delay: 0.48s;
+}
+
+.typing-char-g {
+  animation: typing-bounce 2.5s ease-in-out infinite both;
+  animation-delay: 0.6s;
+}
+
+/* I'm Bored!: I'm static; B,o,r,e,d and !! animate in from different directions, then together — repeating */
+@keyframes imbored-from-top-left {
+  0% { opacity: 0; transform: translate(-120%, -120%); }
+  15% { opacity: 1; transform: translate(0, 0); }
+  40% { opacity: 1; transform: translate(0, 0); }
+  55% { opacity: 0; transform: translate(-120%, -120%); }
+  100% { opacity: 0; transform: translate(-120%, -120%); }
+}
+
+@keyframes imbored-from-bottom-left {
+  0% { opacity: 0; transform: translate(-120%, 120%); }
+  15% { opacity: 1; transform: translate(0, 0); }
+  40% { opacity: 1; transform: translate(0, 0); }
+  55% { opacity: 0; transform: translate(-120%, 120%); }
+  100% { opacity: 0; transform: translate(-120%, 120%); }
+}
+
+@keyframes imbored-from-top-center {
+  0% { opacity: 0; transform: translateY(-120%); }
+  15% { opacity: 1; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(0); }
+  55% { opacity: 0; transform: translateY(-120%); }
+  100% { opacity: 0; transform: translateY(-120%); }
+}
+
+@keyframes imbored-from-bottom-center {
+  0% { opacity: 0; transform: translateY(120%); }
+  15% { opacity: 1; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(0); }
+  55% { opacity: 0; transform: translateY(120%); }
+  100% { opacity: 0; transform: translateY(120%); }
+}
+
+@keyframes imbored-from-middle-right {
+  0% { opacity: 0; transform: translateX(120%); }
+  15% { opacity: 1; transform: translateX(0); }
+  40% { opacity: 1; transform: translateX(0); }
+  55% { opacity: 0; transform: translateX(120%); }
+  100% { opacity: 0; transform: translateX(120%); }
+}
+
+@keyframes imbored-from-top-right {
+  0% { opacity: 0; transform: translate(120%, -120%); }
+  15% { opacity: 1; transform: translate(0, 0); }
+  40% { opacity: 1; transform: translate(0, 0); }
+  55% { opacity: 0; transform: translate(120%, -120%); }
+  100% { opacity: 0; transform: translate(120%, -120%); }
+}
+
+@keyframes imbored-from-bottom-right {
+  0% { opacity: 0; transform: translate(120%, 120%); }
+  15% { opacity: 1; transform: translate(0, 0); }
+  40% { opacity: 1; transform: translate(0, 0); }
+  55% { opacity: 0; transform: translate(120%, 120%); }
+  100% { opacity: 0; transform: translate(120%, 120%); }
+}
+
+.imbored-static {
+  display: inline-block;
+}
+
+.imbored-gap {
+  margin-right: 0.35em;
+}
+
+.imbored-b {
+  animation: imbored-from-top-left 5s ease-in-out infinite both;
+  animation-delay: 0s;
+}
+
+.imbored-o {
+  animation: imbored-from-bottom-left 5s ease-in-out infinite both;
+  animation-delay: 0.2s;
+}
+
+.imbored-r {
+  animation: imbored-from-top-center 5s ease-in-out infinite both;
+  animation-delay: 0.4s;
+}
+
+.imbored-e {
+  animation: imbored-from-bottom-center 5s ease-in-out infinite both;
+  animation-delay: 0.6s;
+}
+
+.imbored-d {
+  animation: imbored-from-middle-right 5s ease-in-out infinite both;
+  animation-delay: 0.8s;
+}
+
+.imbored-excl1 {
+  animation: imbored-from-top-right 5s ease-in-out infinite both;
+  animation-delay: 1s;
+}
+
+/* Show title immediately when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-word-my,
+  .hero-word-core,
+  .hero-word-skills,
+  .math-char-m,
+  .math-char-a,
+  .math-char-t,
+  .math-char-h,
+  .readtheory-char-r,
+  .readtheory-char-e,
+  .readtheory-char-a,
+  .readtheory-char-d,
+  .readtheory-th,
+  .readtheory-eo,
+  .readtheory-ry,
+  .english-rotate-y,
+  .grammar-orbit-track,
+  .grammar-orbit-word,
+  .typing-char-t,
+  .typing-char-y,
+  .typing-char-p,
+  .typing-char-i,
+  .typing-char-n,
+  .typing-char-g,
+  .imbored-b,
+  .imbored-o,
+  .imbored-r,
+  .imbored-e,
+  .imbored-d,
+  .imbored-excl1 {
+    animation: none;
+    opacity: 1;
+  }
+
+  .imbored-b,
+  .imbored-o,
+  .imbored-r,
+  .imbored-e,
+  .imbored-d,
+  .imbored-excl1 {
+    transform: none;
+  }
+
+  .grammar-orbit-track {
+    transform: translate(-50%, -50%);
+  }
+
+  .grammar-orbit-word {
+    transform: translate(-50%, -50%);
+  }
+}
