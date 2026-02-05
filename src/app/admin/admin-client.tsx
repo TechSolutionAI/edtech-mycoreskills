@@ -242,7 +242,7 @@ export function AdminClient({
 
             {expandedAreaId === area.id && (
               <div className="border-t border-slate-200 p-3 space-y-2">
-                {area.tiles.map((tile, tileIndex) => (
+                {area.tiles.map((tile: Tile, tileIndex: number) => (
                   <div
                     key={tile.id}
                     onDragOver={(e) => handleTileDragOver(e, tileIndex)}
